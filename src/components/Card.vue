@@ -9,7 +9,7 @@
   </header>
   <div class="card-content">
     <div class="content">
-      {{ descricao }}
+      {{ descricao }} 
       <br>
       <p>R$ {{ valor }}</p>
     </div>

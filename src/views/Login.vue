@@ -3,7 +3,17 @@
 
         <div class="columns mt-6">
             <div class="column is-one-third">
+            </div> 
+            <div class="column">
+                <h1 class="title">Administrador</h1>
             </div>
+            <div class="column">
+            </div>
+        </div>
+
+        <div class="columns mt-6">
+            <div class="column is-one-third">
+            </div> 
             <div class="column">
                 <div class="field">
                     <label class="label">Email:</label>
@@ -38,7 +48,7 @@
                 <div class="field">
                     <label class="label">Senha:</label>
                     <div class="control">
-                        <button class="button is-info">Info</button>
+                        <button class="button is-info">Logar</button>
                     </div>
                 </div>
             </div>
