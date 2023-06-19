@@ -11,4 +11,5 @@
 ## Instruções para o modo de administrador 
 -Email: admin@admin.com
 -Senha: 12345
+-Token JWT disponivel po 1 Hora
 
