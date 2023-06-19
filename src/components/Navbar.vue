@@ -6,14 +6,14 @@
                    <h1>Cachorros Quentes Gourmet</h1>
                 </a>
 
-                <a role="button" @click="teste" class="navbar-burger" :class="{'is-active': isMenuActive}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a role="button" @click="ativo" class="navbar-burger" :class="{'is-active': menuAtivo}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 </a>
             </div>
 
-            <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': isMenuActive}">
+            <div id="navbarBasicExample" class="navbar-menu" :class="{'is-active': menuAtivo}">
                 <div class="navbar-start">
                     <router-link 
                     to="/"
@@ -27,16 +27,27 @@
                     to="/pedido-personalizado"
                     class="navbar-item"
                     >Pedido Personalizado</router-link>
+                    <router-link 
+                    v-if="logadoStore.logado"
+                    to="/painel"
+                    class="navbar-item"
+                    >Painel ADM</router-link>
                 </div>
 
                 <div class="navbar-end">
                 <div class="navbar-item" >
                     <div class="buttons" >
-                    <router-link to="/login">
-                        <a class="button is-danger">
-                            <svg-icon type="mdi" :path="path"></svg-icon>
+
+                        <a v-if="logadoStore.logado" @click="deslogar" class="button is-danger">
+                            <svg-icon type="mdi" :path="logadoIcon"></svg-icon>
                         </a>
-                    </router-link>
+
+                        <router-link v-else to="/login">
+                            <a class="button is-danger">
+                                <svg-icon type="mdi" :path="deslogadoIcon"></svg-icon>
+                            </a>
+                        </router-link>
+
                     </div>
                 </div>
                 </div>
@@ -46,18 +57,30 @@
 </template>
 <script>
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiAccountSupervisor } from '@mdi/js'
+import { mdiLoginVariant, mdiLogout } from '@mdi/js'
 import { RouterLink } from 'vue-router'
+import { useLogadoStore } from '../stores/LogadoStore';
+
+
 export default {
     data() {
     return {
-      isMenuActive: false,
-      path: mdiAccountSupervisor,
+      menuAtivo: false,
+      logadoIcon:  mdiLogout,
+      deslogadoIcon: mdiLoginVariant,
+      logadoStore: useLogadoStore()
     }
   },
+  mounted() {
+  },
   methods: {
-    teste() {
-        this.isMenuActive = !this.isMenuActive;
+    ativo() {
+        this.menuAtivo = !this.menuAtivo;
+    },
+    deslogar(){
+        localStorage.removeItem('token');
+        this.logadoStore.deslogar()
+        this.$router.push('/');
     }
   },
   components: {
