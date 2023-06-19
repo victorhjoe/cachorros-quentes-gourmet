@@ -29,9 +29,14 @@
                     >Pedido Personalizado</router-link>
                     <router-link 
                     v-if="logadoStore.logado"
-                    to="/painel"
+                    to="/ingredientes"
                     class="navbar-item"
-                    >Painel ADM</router-link>
+                    >Ingredientes</router-link>
+                    <router-link 
+                    v-if="logadoStore.logado"
+                    to="/promocoes"
+                    class="navbar-item"
+                    >Promoções</router-link>
                 </div>
 
                 <div class="navbar-end">

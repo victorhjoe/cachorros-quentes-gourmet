@@ -83,7 +83,7 @@ export default {
                     localStorage.setItem("token", res.data.token);
                     const logadoStore = useLogadoStore();
                     logadoStore.logar();
-                    this.$router.push('/painel');
+                    this.$router.push('/ingredientes');
                 })
                 .catch(error => {
                     console.log(error)

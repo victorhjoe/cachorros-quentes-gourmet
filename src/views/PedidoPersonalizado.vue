@@ -66,7 +66,7 @@ export default {
 
             if (this.valorLanche > 0) {
                 bulmaToast.toast({ message: `Sua compra com o valor de R$ ${this.valorLanche} foi solicitada!`, type: 'is-success', duration: 99999, dismissible: true })
-                this.$router.push('/pedidos')
+                this.$router.push('/pedidos');
             }
         }
     },

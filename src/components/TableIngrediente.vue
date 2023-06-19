@@ -1,52 +1,17 @@
 <template lang="">
     <div class="container mt-6">
         <div class="mt-6">
-            <table class="table">
+            <table class="table is-fullwidth">
                 <thead>
                     <tr>
                         <th>{{ item }}</th>
                         <th>Valor</th>
-                        <th v-if="isPromotion">Lanche</th>
-                        <th v-if="isPromotion">Lanche Adicional</th>
-                        <th v-if="isPromotion">Acrescimo</th>
-                        <th v-if="isPromotion">Desconto</th>
                         <th></th>
                         <th><button @click="adicionaCampo" class="button is-success">Adicionar</button></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="addPromotion">
-                        <th>
-                            <div class="control">
-                                <input v-model="nomeEdit" class="input" type="text" placeholder="Nome">
-                            </div>
-                        </th>
-                        <td>
-                            <div class="control">
-                                <input v-model="valorAdd" class="input" type="text" placeholder="preço">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="select">
-                                <select>
-                                    <option>Select dropdown</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            {{ item.lanches[1] ? item.lanches[1].nome : ''}}
-                        </td>
 
-                        <td>
-                            {{ item.acrescimo ? `R$ ${item.acrescimo}` : "" }}
-                        </td>
-                        <td>
-                           {{ item.desconto ? `${item.desconto} %`: "" }}
-                        </td>
-
-                        <td><button @click="editar(item, index)" class="button is-info">Editar</button></td>
-                        <td><button @click="deletar(item, index)" class="button is-danger">Excluir</button></td>
-                    </tr>
                     <tr v-if="editItem">
                         <th>
                             <div class="control">
@@ -68,31 +33,16 @@
                             </div>
                         </th>
                         <td>
+                            <div class="control">
+                                <input v-model="valorAdd" class="input" type="text" placeholder="preço">
+                            </div>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td><button @click="adicionar" class="button is-info">Adicionar</button></td>
                         <td><button @click="removerAdicionar" class="button is-danger">Cancelar</button></td>
                     </tr>
                     <tr v-for="(item, index) in itemList">
                         <th>{{ item.nome }}</th>
                         <td>R$: {{ item.valor.toFixed(2).replace('.', ',') }}</td>
-                        <td v-if="isPromotion">
-                            {{ item.lanches[0].nome }}
-                        </td>
-                        <td v-if="isPromotion">
-                            {{ item.lanches[1] ? item.lanches[1].nome : ''}}
-                        </td>
-
-                        <td v-if="isPromotion">
-                            {{ item.acrescimo ? `R$ ${item.acrescimo}` : "" }}
-                        </td>
-                        <td v-if="isPromotion">
-                           {{ item.desconto ? `${item.desconto} %`: "" }}
-                        </td>
-
                         <td><button @click="editar(item, index)" class="button is-info">Editar</button></td>
                         <td><button @click="deletar(item, index)" class="button is-danger">Excluir</button></td>
                     </tr>
@@ -114,8 +64,6 @@ export default {
             nomeEdit: "",
             valorEdit: "",
             editIndex: null,
-            lanche: "",
-            addPromotion: false
         }
     },
     props: {
@@ -126,10 +74,6 @@ export default {
         item: {
             type: String,
             required: true
-        },
-        isPromotion: {
-            type: Boolean,
-            required: false
         }
     },
     methods: {
