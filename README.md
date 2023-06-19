@@ -1,35 +1,14 @@
-# cachorros-quente-gourmet
+# Projeto Simulando uma lanchonete de cachorros quente
 
-This template should help get you started developing with Vue 3 in Vite.
+- Layout Responsivo
+- Feito em Vue.js
+- <img align="center" alt="spring" height="40"  src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D">
 
-## Recommended IDE Setup
+## Intruções para rodar
+- npm install para instalar dependências
+- npm run dev para rodar o projeto
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Instruções para o modo de administrador 
+-Email: admin@admin.com
+-Senha: 12345
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
