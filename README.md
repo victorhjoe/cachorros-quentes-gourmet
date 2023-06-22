@@ -8,8 +8,6 @@
 - npm install para instalar dependências
 - npm run dev para rodar o projeto
 
-## Instruções para o modo de administrador 
--Email: admin@admin.com
--Senha: 12345
--Token JWT disponivel po 1 Hora
+#login de administrador permanece apenas no layout pode se inserir qualquer email e senha
+
 
