@@ -93,7 +93,7 @@
                         <th>{{ item.nome }}</th>
                         <td>R$: {{ item.valor.toFixed(2).replace('.', ',') }}</td>
                         <td >
-                            {{ item.lanches[0].nome }}
+                            {{ item.lanches[0].nome ?  item.lanches[0].nome : ""}}
                         </td>
                         <td >
                             {{ item.lanches[1] ? item.lanches[1].nome : ''}}
@@ -197,9 +197,9 @@ export default {
             this.idEdit = null;
             this.editIndex = null;
             this.lancheAdd = null,
-            this.lancheAdicionalAdd = null;
-            this.lancheAddEdit = null;
-            this.lancheAdicionalAddEdit = null;
+            this.lancheAdicionalAdd = {};
+            this.lancheAddEdit = {};
+            this.lancheAdicionalAddEdit = {};
             this.acrescimo = "0";
             this.desconto = "0";
             this.acrescimoEdit = "0";
@@ -209,7 +209,7 @@ export default {
             this.idEdit = item.id;
             this.nomeEdit = item.nome;
             this.valorEdit = item.valor;
-            this.lancheAddEdit = item.lanches[0];
+            this.lancheAddEdit = item.lanches[0] ? item.lanches[0] : [];
             if(item.lanches.length > 1){
                 this.lancheAdicionalAddEdit = item.lanches[1]
             }
@@ -222,21 +222,25 @@ export default {
         },
         confirmEditar(item, index){
             let lanchesDTO = [];
-            lanchesDTO.push(this.lancheAdd);
+            lanchesDTO.push(this.lancheAddEdit);
+            console.log('this.lancheAddEdit', this.lancheAddEdit);
+            console.log('this.lancheAdicionalAddEdit', this.lancheAdicionalAddEdit);  
 
             let valorDTO = this.lancheAddEdit.valor;
 
 
             if(this.lancheAdicionalAdd != null){
-                lanchesDTO.push(this.lancheAdicionalAdd);
+                lanchesDTO.push(this.lancheAdicionalAddEdit);
                 valorDTO += this.lancheAdicionalAdd.valor;
             }
+
+            console.log('lanchesDTO', lanchesDTO);
 
             valorDTO = this.calcularValor(valorDTO, parseFloat(this.acrescimo), this.desconto);
 
             this.$emit('edita', { id: this.idEdit, nome: this.nomeEdit, lanches: lanchesDTO, acrescimo: this.acrescimoEdit, desconto: this.descontoEdit, valor: valorDTO }, index);
-            this.limparCampos();
             this.editItem = false;
+            this.limparCampos();
         },
         cancelarEditar(index){
             let lanches = [];

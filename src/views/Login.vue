@@ -78,17 +78,23 @@ export default {
             "senha": this.senha
         }
 
-        axios.post('http://localhost:8080/api/login', login)
-                .then(res => {
-                    localStorage.setItem("token", res.data.token);
-                    const logadoStore = useLogadoStore();
-                    logadoStore.logar();
-                    this.$router.push('/ingredientes');
-                })
-                .catch(error => {
-                    console.log(error)
-                    bulmaToast.toast({ message: "Usuário ou senha informados estão inválidos. Tente Novamente", type: 'is-danger', duration: 99999, dismissible: true })
-                })
+        // axios.post('http://localhost:8080/api/login', login)
+        //         .then(res => {
+        //             localStorage.setItem("token", res.data.token);
+        //             const logadoStore = useLogadoStore();
+        //             logadoStore.logar();
+        //             this.$router.push('/ingredientes');
+        //         })
+        //         .catch(error => {
+        //             console.log(error)
+        //             bulmaToast.toast({ message: "Usuário ou senha informados estão inválidos. Tente Novamente", type: 'is-danger', duration: 99999, dismissible: true })
+        //         })
+
+        //localStorage.setItem("token", );
+        const logadoStore = useLogadoStore();
+        logadoStore.logar();
+        this.$router.push('/ingredientes');
+
     }
   }
 }

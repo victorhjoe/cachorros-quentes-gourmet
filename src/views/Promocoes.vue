@@ -43,12 +43,17 @@ export default {
                 .then(res => this.promocoes.splice(index))
         },
         putPromocao(promocao, index){
-            console.log('promocao', promocao);
             promocao.valor = parseFloat(promocao.valor)
+
             promocao.acrescimo = parseFloat(promocao.acrescimo)
+
             promocao.desconto = parseFloat(promocao.desconto)
-            axios.put(`http://localhost:8080/api/ingredientes/${promocao.id}`, promocao , { headers: { Authorization: `Bearer ${this.token}` } })
-                .then(res => this.promocoes.splice(index, 0, res.data))
+
+            axios.put(`http://localhost:8080/api/promocoes/${promocao.id}`, promocao , { headers: { Authorization: `Bearer ${this.token}` } })
+                .then(res => {
+                    this.promocoes.unshift(res.data)
+                })
+                .catch(error => console.log(error))
         }
     }
 }
